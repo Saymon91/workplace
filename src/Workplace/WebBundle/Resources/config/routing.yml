@@ -1,3 +1,54 @@
-workplace_web_homepage:
-    path:     /
-    defaults: { _controller: WorkplaceWebBundle:Default:index }
+workplace_web_portal_homepage:
+  path: /{lang}
+  defaults: { _controller: WorkplaceWebBundle:Portal:index, _format: html, lang: ru }
+  methods: [GET]
+  requirements:
+    lang: en|fr|ru
+    _format: html
+    _locale: ru
+
+workplace_web_portal_about:
+  path: /about/{lang}
+  defaults: { _controller: WorkplaceWebBundle:Portal:about, _format: html, lang: ru }
+  methods: [GET]
+    requirements:
+      lang: en|fr|ru
+      _format: html
+      _locale: ru
+
+workplace_web_account_index:
+  path: /account/{lang}
+  defaults: { _controller: WorkplaceWebBundle:Account:index, _format: html, lang: ru }
+  methods: [GET]
+    requirements:
+      lang: en|fr|ru
+      _format: html
+      _locale: ru
+
+workplace_web_account_tasks:
+  path: /account/tasks{lang}
+  defaults: { _controller: WorkplaceWebBundle:Account:tasks, _format: html, lang: ru }
+  methods: [GET]
+    requirements:
+      lang: en|fr|ru
+      _format: html
+      _locale: ru
+
+workplace_web_account_calendar:
+  path: /account/calendar{lang}
+  defaults: { _controller: WorkplaceWebBundle:Account:calendar, _format: html, lang: ru }
+  methods: [GET]
+    requirements:
+      lang: en|fr|ru
+      _format: html
+      _locale: ru
+
+workplace_web_account_map:
+  path: /account/map{lang}
+  defaults: { _controller: WorkplaceWebBundle:Account:map, _format: html, lang: ru }
+  methods: [GET]
+    requirements:
+      lang: en|fr|ru
+      _format: html
+      _locale: ru
+
