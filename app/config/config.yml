@@ -8,6 +8,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    env(LOCALE): 'RU_ru'
     locale: '%env(LOCALE)%'
 
 framework:
@@ -39,7 +40,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    global:
+    globals:
         locale: '%locale%'
 
 # Doctrine Configuration

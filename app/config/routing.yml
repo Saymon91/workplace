@@ -1,6 +1,6 @@
 workplace_api:
     resource: "@WorkplaceApiBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /api
 
 workplace_web:
     resource: "@WorkplaceWebBundle/Resources/config/routing.yml"
