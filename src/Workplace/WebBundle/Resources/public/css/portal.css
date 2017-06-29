@@ -1,0 +1,9 @@
+:root {
+  --background-image: url(/bundles/workplaceweb/images/portal-background.jpg);
+}
+
+body > .content {
+  display: grid;
+  grid-template-rows: 60px 35px auto 60px;
+}
+
