@@ -1,4 +1,5 @@
 {% import "WorkplaceWebBundle:Web:navigation.html.twig" as nav %}
+{% set title = app.request.attributes.get('_route') %}
 <!DOCTYPE html>
 <html lang="{{ locale | default('ru_RU') }}">
 {% block head %}
@@ -23,13 +24,16 @@
 {% block page %}
     {% block header %}
     <header>
-        {% block header_content %}
-        <span>{{ title | default('') }}</span>
-        {% endblock %}
+        <div class="blur"></div>
+        <div class="content">
+            {% block header_content %}
+                <span>{{ title | default('') }}</span>
+            {% endblock %}
+        </div>
     </header>
     {% endblock %}
     {% block navigation %}
-        {{ nav.nav('main-menu', 'main-menu', main_menu) }}
+        {{ nav.nav('main-menu', 'main-menu blur', main_menu) }}
     {% endblock %}
     {% block article %}
     <article>{% block content %}{% endblock %}</article>

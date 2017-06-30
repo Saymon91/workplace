@@ -1,9 +1,12 @@
 {% macro nav(id, class, links) %}
 <nav id="{{ id }}" class="{{ class }}">
-    <ul>
-    {% for link in links %}
-        <li><a href="{{ path(link.url) }}">{{ link.text }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="blur"></div>
+    <div class="content">
+        <ul>
+            {% for link in links %}
+                <li><a href="{{ path(link.url) }}">{{ link.text }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </nav>
 {% endmacro %}

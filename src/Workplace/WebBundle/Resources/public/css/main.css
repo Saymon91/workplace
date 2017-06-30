@@ -1,10 +1,14 @@
 :root {
   --main-menu-height: 35px;
+  --main-menu-width: 100%;
+  --blur-value: 4px;
 }
 
 * {
   margin: 0;
   padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 a,a:active,a:visited {
@@ -17,28 +21,22 @@ body {
   background-size: cover;
 }
 
+body > .content {
+  display: grid;
+  grid-template-rows: var(--header-height) var(--main-menu-height) auto var(--footer-height);
+}
+
 .main-menu {
-  width: 100%;
-  height: var(--main-menu-height);
   display: flex;
   justify-content: center;
   position: relative;
-}
-.main-menu:before {
-  content: " ";
-  background: var(--background-image);
-  filter: blur(2px);
-  width: inherit;
-  position: absolute;
-  display: block;
-  height: inherit;
-  background-size: cover;
-  z-index: 0;
+  height: var(--main-menu-height);
+  width: var(--main-menu-width);
 }
 
-.main-menu > ul {
+.main-menu > .content > ul {
   display: flex;
-  width: 100%;
+  width: var(--main-menu-width);
   justify-content: center;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -46,19 +44,44 @@ body {
   background: rgba(0,0,0,0.5);
 }
 
-.main-menu > ul > li {
+.main-menu > .content > ul > li {
   width: 120px;
   text-align: center;
   line-height: var(--main-menu-height);
   list-style-type: none;
 }
 
-.main-menu > ul > li > a {
+.main-menu > .content > ul > li > a {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-.main-menu > ul > li > a:hover {
+.main-menu > .content > ul > li > a:hover {
   color: white;
+}
+
+body > .content * > .blur {
+  height: calc(100% + 4 * var(--blur-value));
+  top: calc(var(--blur-value) - 2 * var(--blur-value));
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  background: var(--background-image);
+  background-size: cover;
+  filter: blur(var(--blur-value));
+}
+
+body > .content * > .content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+header {
+  position: relative;
+  height: var(--header-height);
+  width: var(--header-width);
 }
