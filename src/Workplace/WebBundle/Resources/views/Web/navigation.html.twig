@@ -1,10 +1,11 @@
-{% macro nav(id, class, links) %}
+{% macro nav(id, class, links, i18n) %}
 <nav id="{{ id }}" class="{{ class }}">
     <div class="blur"></div>
     <div class="content">
         <ul>
-            {% for link in links %}
-                <li><a href="{{ path(link.url) }}">{{ link.text }}</a></li>
+            {% set current = app.request.attributes.get('_route') %}
+            {% for link, name in links if current != link %}
+                <li><a href="{{ link }}">{{ i18n[name] | default(name) }}</a></li>
             {% endfor %}
         </ul>
     </div>

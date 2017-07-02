@@ -1,5 +1,6 @@
 {% import "WorkplaceWebBundle:Web:navigation.html.twig" as nav %}
-{% set title = app.request.attributes.get('_route') %}
+{% set current = app.request.attributes.get('_route') %}
+{% set title = i18n[main_menu[current]] | default(main_menu[current]) | default('') %}
 <!DOCTYPE html>
 <html lang="{{ locale | default('ru_RU') }}">
 {% block head %}
@@ -16,7 +17,7 @@
     {% block scripts %}
     {% endblock %}
 
-    <title>{{ title | default('') }}</title>
+    <title>{{ current | default('') }}</title>
 </head>
 {% endblock %}
 {% block body %}
@@ -26,14 +27,20 @@
     <header>
         <div class="blur"></div>
         <div class="content">
-            {% block header_content %}
-                <span>{{ title | default('') }}</span>
-            {% endblock %}
+            <div class="header-background">
+                <div class="header-left-decor"> </div>
+                <div class="header-right-decor"> </div>
+            </div>
+            <div class="header-content">
+                {% block header_content %}
+                    <span>{{ title | default('') }}</span>
+                {% endblock %}
+            </div>
         </div>
     </header>
     {% endblock %}
     {% block navigation %}
-        {{ nav.nav('main-menu', 'main-menu blur', main_menu) }}
+        {{ nav.nav('main-menu', 'main-menu blur', main_menu, i18n) }}
     {% endblock %}
     {% block article %}
     <article>{% block content %}{% endblock %}</article>

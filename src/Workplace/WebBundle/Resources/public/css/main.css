@@ -19,6 +19,7 @@ a,a:active,a:visited {
 body {
   background-image: var(--background-image);
   background-size: cover;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
 }
 
 body > .content {
@@ -64,6 +65,7 @@ body > .content {
 body > .content * > .blur {
   height: calc(100% + 4 * var(--blur-value));
   top: calc(var(--blur-value) - 2 * var(--blur-value));
+  left: 0;
   width: 100%;
   position: absolute;
   z-index: 0;
@@ -84,4 +86,13 @@ header {
   position: relative;
   height: var(--header-height);
   width: var(--header-width);
+}
+
+header .header-left-decor {
+  display: block;
+  width: 60%;
+  height: 100%;
+  background: red;
+  opacity: 0.7;
+  content: " ";
 }

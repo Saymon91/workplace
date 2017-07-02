@@ -8,16 +8,32 @@ use Symfony\Component\HttpFoundation\Response;
 class PortalController extends Controller
 {
     const main_menu = [
-        ['url' => 'workplace_web_portal_about', 'text' => 'about'],
-        ['url' => 'workplace_web_portal_contacts', 'text' => 'contacts']
+        'portal_homepage' => 'home',
+        'portal_about'    => 'about',
+        'portal_contacts' => 'contacts'
     ];
+
+    protected function renderTemplate(string $template, array $content = array()) : Response
+    {
+        $parameters = [
+            'main_menu' => $this::main_menu,
+            'i18n'      => [
+                'home'     => 'Домашняя страница',
+                'about'    => 'О продукте',
+                'contacts' => 'Контактные данные'
+            ],
+            'content' => $content
+        ];
+
+        return $this->render($template, $parameters);
+    }
     public function indexAction() : Response
     {
-        return $this->render('WorkplaceWebBundle:Web:index.html.twig', ['main_menu' => $this::main_menu]);
+        return $this->renderTemplate('WorkplaceWebBundle:Web:index.html.twig');
     }
 
     public function aboutAction() : Response
     {
-        return $this->render('WorkplaceWebBundle:Web:about.html.twig');
+        return $this->renderTemplate('WorkplaceWebBundle:Web:about.html.twig');
     }
 }

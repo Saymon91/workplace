@@ -1,48 +1,62 @@
-workplace_web_portal_homepage:
+portal_homepage:
   path: /{lang}
   defaults: { _controller: WorkplaceWebBundle:Portal:index, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
 
-workplace_web_portal_about:
+portal_about:
   path: /about/{lang}
   defaults: { _controller: WorkplaceWebBundle:Portal:about, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
 
-workplace_web_portal_contacts:
+portal_contacts:
   path: /contacts/{lang}
   defaults: { _controller: WorkplaceWebBundle:Portal:contacts, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
 
-workplace_web_account_index:
+account_homepage:
   path: /account/{lang}
   defaults: { _controller: WorkplaceWebBundle:Account:index, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
 
-workplace_web_account_tasks:
+account_tasks:
   path: /account/tasks/{lang}
   defaults: { _controller: WorkplaceWebBundle:Account:tasks, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
 
-workplace_web_account_calendar:
+account_calendar:
   path: /account/calendar/{lang}
   defaults: { _controller: WorkplaceWebBundle:Account:calendar, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
 
-workplace_web_account_map:
+account_map:
   path: /account/map/{lang}
   defaults: { _controller: WorkplaceWebBundle:Account:map, lang: ru }
+  methods: [GET]
+  requirements:
+    lang: en|fr|ru
+
+account_settings:
+  path: /account/settings/{lang}
+  defaults: { _controller: WorkplaceWebBundle:Account:settings, lang: ru }
+  methods: [GET]
+  requirements:
+    lang: en|fr|ru
+
+account_profile:
+  path: /account/prifile/{lang}
+  defaults: { _controller: WorkplaceWebBundle:Account:profile, lang: ru }
   methods: [GET]
   requirements:
     lang: en|fr|ru
