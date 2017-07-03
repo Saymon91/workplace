@@ -17,7 +17,7 @@
     {% block scripts %}
     {% endblock %}
 
-    <title>{{ current | default('') }}</title>
+    <title>{{ title | default('') }}</title>
 </head>
 {% endblock %}
 {% block body %}
@@ -33,7 +33,7 @@
             </div>
             <div class="header-content">
                 {% block header_content %}
-                    <span>{{ title | default('') }}</span>
+                    <span class="title">тест/test</span>
                 {% endblock %}
             </div>
         </div>
@@ -43,7 +43,10 @@
         {{ nav.nav('main-menu', 'main-menu blur', main_menu, i18n) }}
     {% endblock %}
     {% block article %}
-    <article>{% block content %}{% endblock %}</article>
+    <article>
+        <div class="background"></div>
+        <div class="content">{% block content %}{% endblock %}</div>
+    </article>
     {% endblock %}
     {% block footer %}
     <footer>{% block footer_content %}{% endblock %}</footer>
