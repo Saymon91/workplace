@@ -1,3 +1,7 @@
+workplace_users:
+    resource: "@WorkplaceUsersBundle/Resources/config/routing.yml"
+    prefix:   /profile
+
 workplace_api:
     resource: "@WorkplaceApiBundle/Resources/config/routing.yml"
     prefix:   /api
@@ -5,3 +9,6 @@ workplace_api:
 workplace_web:
     resource: "@WorkplaceWebBundle/Resources/config/routing.yml"
     prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
