@@ -1,0 +1,3 @@
+workplace_users_homepage:
+    path:     /
+    defaults: { _controller: WorkplaceUsersBundle:Default:index }
