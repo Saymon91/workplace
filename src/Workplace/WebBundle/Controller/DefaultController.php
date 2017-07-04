@@ -22,9 +22,9 @@ class DefaultController extends Controller {
         $parameters = [
             'main_menu' => $this::main_menu,
             'i18n'      => [
-                'home'     => 'Домашняя страница',
-                'about'    => 'О продукте',
-                'contacts' => 'Контактные данные'
+                'home'     => 'Главная',
+                'about'    => 'О нас',
+                'contacts' => 'Контакты'
             ],
             'content' => $content
         ];
