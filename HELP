@@ -1,0 +1,14 @@
+php bin/console server:run                          - running server
+
+php bin/console assets:install --symlink            - creation links assets to /web
+
+php bin/console generate:bundle                     - creation a new bundle
+php bin/console generate:controller                 - creation a new controller
+
+php bin/console doctrine:generate:entity            - generation a new entity
+php bin/console doctrine:generate:entities          - generation getters ans setters
+
+php bin/console doctrine:database:create            - creation db
+php bin/console doctrine:schema:update --force      - creation/updating tables
+
+php bin/console generate:doctrine:form              - creation form from entity

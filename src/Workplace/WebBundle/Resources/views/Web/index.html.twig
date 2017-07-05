@@ -3,6 +3,12 @@
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="{{ asset('workplaceweb/css/portal.css') }}">
 {% endblock %}
+{% block header_content %}
+    {{ parent() }}
+    {{ render(path('login')) }}
+{% endblock %}
 {% block page %}
-    <div class="content">{{ parent() }}</div>
+    <div class="content">
+        {{ parent() }}
+    </div>
 {% endblock %}

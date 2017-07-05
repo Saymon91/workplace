@@ -19,6 +19,21 @@ portal_contacts:
   requirements:
     lang: en|fr|ru
 
+portal_routes:
+  path: /routes/{lang}
+  defaults: { _controller: WorkplaceWebBundle:Portal:routes, lang: ru }
+  methods: [GET]
+  requirements:
+    lang: en|fr|ru
+
+portal_user:
+  path: /user/{lang}
+  defaults: { _controller: WorkplaceWebBundle:Portal:user, lang: ru }
+  methods: [GET]
+  requirements:
+    lang: en|fr|ru
+
+
 account_homepage:
   path: /account/{lang}
   defaults: { _controller: WorkplaceWebBundle:Account:index, lang: ru }
@@ -60,3 +75,4 @@ account_profile:
   methods: [GET]
   requirements:
     lang: en|fr|ru
+

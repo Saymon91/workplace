@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Workplace\WebBundle\WorkplaceWebBundle(),
             new Workplace\ApiBundle\WorkplaceApiBundle(),
             new Workplace\UsersBundle\WorkplaceUsersBundle(),
+            new Workplace\AdminBundle\WorkplaceAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
