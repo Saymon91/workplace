@@ -134,6 +134,10 @@ header {
   left: 0;
 }
 
+.header-content {
+  display: flex;
+}
+
 header .header-left-decor {
   display: block;
   width: 30vw;

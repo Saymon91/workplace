@@ -1,3 +1,7 @@
+workplace_admin:
+    resource: "@WorkplaceAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
 workplace_users:
     resource: "@WorkplaceUsersBundle/Resources/config/routing.yml"
     prefix:   /profile
@@ -12,3 +16,7 @@ workplace_web:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+login:
+    path:     /login
+    defaults: { _controller: Workplace:UsersBundle:Security:login }
