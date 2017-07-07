@@ -88,6 +88,7 @@ fos_user:
     registration:
         form:
             type: Workplace\UsersBundle\Form\RegistrationType
-    registration:
-            form:
-                type: Workplace\UsersBundle\Form\LoginType
+
+    profile:
+        form:
+            type: Workplace\UsersBundle\Form\ProfileType

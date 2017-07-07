@@ -20,6 +20,6 @@ services:
             - { name: form.type, alias: app_user_registration }
 
     app.form.registration:
-        class: Workplace\UsersBundle\Form\LoginType
+        class: Workplace\UsersBundle\Form\ProfileType
         tags:
-            - { name: form.type, alias: app_user_login }
+            - { name: form.type, alias: app_user_profile }

@@ -11,8 +11,73 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+    const ROLE_SUPER_ADMIN = 'ROLE_ROOT';
+    const ROLE_ADMIN       = 'ROLE_ADMIN';
+    const ROLE_USER        = 'ROLE_USER';
+    const ROLE_GUEST       = 'ROLE_GUEST';
 
-    const INFO_FIELDS = ['username', 'email', 'roles', 'firstname', 'surname', 'othername', 'birthday'];
+    const ROLES = [self::ROLE_SUPER_ADMIN, self::ROLE_ADMIN, self::ROLE_USER, self::ROLE_GUEST];
+
+    static function isOwner(?User $user = null, ?User $target = null) : bool {
+        return (!$user || !$target) ? false : $user->getId() === $target->getId();
+    }
+
+    static function getFields(?User $user = null) : array{
+        $fields = [];
+        foreach (self::INFO_FIELDS as $key => $value)
+        {
+            $roles = array_count_values($value['roles']) ? $value['roles'] : self::ROLES;
+            $list = array_count_values($value['list']) ? $value['list'] : null;
+
+            if (
+                ($user && $list && !in_array($user->getId(), $list))
+                or
+                ($user && array_count_values(array_intersect($user->getRoles(), $roles)))
+            ) {
+                $fields[$key] = $value;
+            }
+        }
+
+        return $fields;
+    }
+
+    const INFO_FIELDS = [
+        'username' => [
+            'roles' => [],
+            'owner' => true,
+            'list'  => []
+        ],
+        'email'    => [
+            'roles' => ['ROLE_ADMIN', 'ROLE_ROOT'],
+            'owner' => true,
+            'list'  => []
+        ],
+        'roles'    => [
+            'roles' => ['ROLE_ADMIN', 'ROLE_ROOT'],
+            'owner' => false,
+            'list'  => []
+        ],
+        'name'     => [
+            'roles' => [],
+            'owner' => true,
+            'list'  => []
+        ],
+        'surname'  => [
+            'roles' => [],
+            'owner' => true,
+            'list'  => []
+        ],
+        'othername'=> [
+            'roles' => [],
+            'owner' => true,
+            'list'  => []
+        ],
+        'birthday' => [
+            'roles' => [],
+            'owner' => true,
+            'list'  => []
+        ]
+    ];
 
     /**
      * User constructor.
@@ -25,32 +90,32 @@ class User extends BaseUser
     }
 
     /**
-     * @var integer $userid
+     * @var integer
      *
-     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $userid;
+    protected $id;
 
     /**
      * @var string $name
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var string $surname
      *
-     * @ORM\Column(type="string", )
+     * @ORM\Column(type="string")
      */
     private $surname;
 
     /**
      * @var string $othername
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $othername;
 
@@ -61,6 +126,16 @@ class User extends BaseUser
      * @ORM\Column(type="date")
      */
     private $birthday;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set name
@@ -158,28 +233,25 @@ class User extends BaseUser
         return $this->birthday;
     }
 
-    public function getInfo(array $fields = self::INFO_FIELDS) : array
+
+    public function getInfo(?User $user = null, array $fields = []) : array
     {
+        $allowed_fields = self::getFields($user);
+        $fields = ($fields && array_count_values($fields))
+            ? array_intersect($fields, $allowed_fields)
+            : $allowed_fields;
+
         $result = [];
-        foreach ($fields as $key)
+        foreach ($fields as $key => $value)
         {
-            $getter = 'get' . ucfirst($key);
-            if (method_exists($this, $getter))
-            {
-                $result[$key] = $this->$getter();
+            if ($user->hasRole(self::ROLE_SUPER_ADMIN) || $user->hasRole(self::ROLE_ADMIN) || $value['owner'] && self::isOwner($user, $this)) {
+                $getter = 'get' . ucfirst($key);
+                if (method_exists($this, $getter)) {
+                    $result[$key] = $this->$getter();
+                }
             }
         }
 
         return $result;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getUserid()
-    {
-        return $this->userid;
     }
 }

@@ -1,3 +1,17 @@
-workplace_users_homepage:
-    path:     /
-    defaults: { _controller: WorkplaceUsersBundle:Default:index }
+login:
+    path:   /login
+    defaults: { _controller: WorkplaceUsersBundle:Security:login }
+    methods: [GET]
+
+profile:
+    path:   /profile
+    defaults: { _controller: WorkplaceUsersBundle:Profile:show }
+    methods: [GET]
+
+list:
+    path:     /list
+    defaults: { _controller: WorkplaceUsersBundle:Users:list }
+
+show:
+    path:     /show
+    defaults: { _controller: WorkplaceUsersBundle:Users:show }

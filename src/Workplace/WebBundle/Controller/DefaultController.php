@@ -26,7 +26,8 @@ class DefaultController extends Controller {
                 'about'    => 'О нас',
                 'contacts' => 'Контакты'
             ],
-            'content' => $content
+            'content' => $content,
+            'user' => $this->getUser()
         ];
 
         return $this->render($template, $parameters);

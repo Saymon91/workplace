@@ -21,7 +21,7 @@ class PortalController extends DefaultController
     {
         $user = $this->getUser();
         print('<pre>');
-        print_r($user);
+        print_r($user->getInfo($user));
         print('</pre>');
         // return $this->renderTemplate('WorkplaceWebBundle:Web:user.html.twig');
     }

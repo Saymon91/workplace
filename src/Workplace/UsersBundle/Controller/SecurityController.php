@@ -1,32 +1,14 @@
 <?php
 namespace Workplace\UsersBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\{ Request, Response };
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Workplace\UsersBundle\Form\UserType;
+use FOS\UserBundle\Controller\SecurityController as FOSSecurityController;
 
 
-class SecurityController extends Controller
+class SecurityController extends FOSSecurityController
 {
-    public function loginAction(Request $request, AuthenticationUtils $authUtils) : Response
+    public function renderLogin(array $data) : Response
     {
-        die('AAAAAAAAA');
-        // get the login error if there is one
-        $error = $authUtils->getLastAuthenticationError();
-
-        // last username entered by the user
-        $lastUsername = $authUtils->getLastUsername();
-
-        return $this->render('WorkplaceUsersBundle:Security:login.html.twig', [
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ]);
-    }
-
-    public function registerAction() : Response
-    {
-        $form = new UserType();
-        return $this->render('WorkplaceUsersBundle:Security:register.html.twig', ['form' => $form]);
+        return $this->render('WorkplaceUsersBundle:Security:login.html.twig', $data);
     }
 }
